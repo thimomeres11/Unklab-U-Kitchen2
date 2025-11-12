@@ -1,0 +1,29 @@
+═══════════════════════════════════════════════════════════════
+  CARA MENAMBAHKAN GAMBAR MENU
+═══════════════════════════════════════════════════════════════
+
+1. Buka folder: public/images/menu/
+
+2. Simpan file gambar dengan nama berikut:
+
+   ✅ nasi-omelet.jpg       → untuk "Nasi Goreng Spesial"
+   ✅ mie-goreng.jpg        → untuk "Mie Goreng Komplit"
+   ✅ bakso.jpg             → untuk "Bakso Spesial"
+   ✅ nasi-campur.jpg       → untuk "Nasi Campur"
+   ✅ bakso-2.jpg           → untuk "Bakso Daging"
+   ✅ mie-goreng-2.jpg      → untuk "Mie Goreng Spesial"
+   ✅ nasi-omelet-2.jpg     → untuk "Nasi dengan Omelet"
+   ✅ dessert-coklat.jpg    → untuk "Dessert Coklat"
+
+3. Format yang didukung: .jpg, .jpeg, .png, .webp
+
+4. Setelah menambahkan gambar, refresh browser (F5 atau Cmd+R)
+
+5. Jika gambar masih tidak muncul:
+   - Pastikan nama file sesuai persis (case-sensitive)
+   - Pastikan file ada di folder public/images/menu/
+   - Cek console browser untuk error
+   - Restart dev server: npm run dev
+
+═══════════════════════════════════════════════════════════════
+

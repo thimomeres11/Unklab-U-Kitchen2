@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+  --color-kitchen-gold: #D4AF37;
+  --color-kitchen-brown: #8B6914;
+  --color-kitchen-light: #F5E6D3;
+  --color-kitchen-dark: #5C4A2A;
+}
+
+@layer base {
+  body {
+    @apply bg-kitchen-light dark:bg-kitchen-dark text-gray-900 dark:text-kitchen-light transition-colors duration-300;
+  }
+}

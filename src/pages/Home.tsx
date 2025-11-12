@@ -1,0 +1,97 @@
+import { Link } from 'react-router-dom';
+
+export default function Home() {
+  return (
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 px-4 bg-gradient-to-br from-kitchen-gold via-kitchen-brown to-kitchen-dark text-white">
+        <div className="container mx-auto text-center">
+          <div className="mb-8">
+            <span className="text-8xl mb-4 block">🍽️</span>
+            <h1 className="text-5xl md:text-6xl font-bold mb-4">
+              The UNKLAB U Kitchen
+            </h1>
+            <p className="text-xl md:text-2xl text-kitchen-light max-w-2xl mx-auto">
+              Nikmati berbagai menu makanan dan minuman lezat dari kantin UNKLAB
+            </p>
+          </div>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+            <Link
+              to="/menu"
+              className="px-8 py-4 bg-white text-kitchen-brown rounded-lg font-bold text-lg hover:bg-kitchen-light transform hover:scale-105 transition-all duration-200 shadow-lg"
+            >
+              Lihat Menu
+            </Link>
+            <Link
+              to="/order"
+              className="px-8 py-4 bg-kitchen-brown text-white rounded-lg font-bold text-lg hover:bg-kitchen-dark transform hover:scale-105 transition-all duration-200 shadow-lg border-2 border-white"
+            >
+              Pesan Sekarang
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-16 px-4 bg-white dark:bg-kitchen-dark">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-kitchen-light">
+            Mengapa Pilih UNKLAB U Kitchen?
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center p-6 bg-kitchen-light dark:bg-kitchen-brown/30 rounded-xl">
+              <div className="text-5xl mb-4">🍜</div>
+              <h3 className="text-xl font-bold mb-2 text-gray-800 dark:text-kitchen-light">
+                Menu Beragam
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                Dari makanan berat hingga minuman segar, semua tersedia untuk Anda
+              </p>
+            </div>
+            
+            <div className="text-center p-6 bg-kitchen-light dark:bg-kitchen-brown/30 rounded-xl">
+              <div className="text-5xl mb-4">⚡</div>
+              <h3 className="text-xl font-bold mb-2 text-gray-800 dark:text-kitchen-light">
+                Pesan Cepat
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                Sistem pemesanan online yang mudah dan cepat
+              </p>
+            </div>
+            
+            <div className="text-center p-6 bg-kitchen-light dark:bg-kitchen-brown/30 rounded-xl">
+              <div className="text-5xl mb-4">🚚</div>
+              <h3 className="text-xl font-bold mb-2 text-gray-800 dark:text-kitchen-light">
+                Antar ke Meja
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                Pesanan Anda akan diantarkan langsung ke meja Anda
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 px-4 bg-gradient-to-r from-kitchen-gold to-kitchen-brown text-white">
+        <div className="container mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-4">
+            Siap Memesan?
+          </h2>
+          <p className="text-xl mb-8 text-kitchen-light">
+            Jelajahi menu kami dan pesan makanan favorit Anda sekarang!
+          </p>
+          <Link
+            to="/menu"
+            className="inline-block px-8 py-4 bg-white text-kitchen-brown rounded-lg font-bold text-lg hover:bg-kitchen-light transform hover:scale-105 transition-all duration-200 shadow-lg"
+          >
+            Lihat Menu Lengkap
+          </Link>
+        </div>
+      </section>
+    </div>
+  );
+}
+
