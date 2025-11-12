@@ -148,7 +148,7 @@ export const menuData: MenuItem[] = [
     id: 17,
     name: "Aqua",
     description: "Es teh dengan gula dan es",
-    price: 000,
+    price: 5000,
     image: "/images/menu/Aqua.jpeg",
     category: "minuman",
   },
@@ -157,7 +157,7 @@ export const menuData: MenuItem[] = [
     name: "Smoothie",
     description: "Smoothie dengan buah-buahan",
     price: 10000,
-    image: "/images/menu/SmoothieTaro.jpeg",
+    image: "/images/men/SmoothieTaro.jpeg",
     category: "minuman",
   },
 ];
