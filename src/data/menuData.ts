@@ -81,7 +81,7 @@ export const menuData: MenuItem[] = [
     name: "Roti Bakar",
     description: "Roti bakar dengan selai coklat atau keju",
     price: 12000,
-    image: "🍞",
+    image: "/images/menu/RotiBakar.jpeg",
     category: "makanan-ringan",
   },
   {
@@ -89,7 +89,7 @@ export const menuData: MenuItem[] = [
     name: "Lumpia Basah",
     description: "Lumpia dengan isian sayuran dan daging",
     price: 10000,
-    image: "🌯",
+    image: "/images/menu/Lumpia.jpeg",
     category: "makanan-ringan",
   },
   {
@@ -105,7 +105,7 @@ export const menuData: MenuItem[] = [
     name: "Tahu Isi",
     description: "Tahu goreng dengan isian sayuran dan daging",
     price: 8000,
-    image: "🧆",
+    image: "/images/menu/TahuIsi.jpeg",
     category: "makanan-ringan",
   },
   {
@@ -157,7 +157,7 @@ export const menuData: MenuItem[] = [
     name: "Smoothie",
     description: "Smoothie dengan buah-buahan",
     price: 10000,
-    image: "/images/men/SmoothieTaro.jpeg",
+    image: "/images/menu/SmoothieTaro.jpeg",
     category: "minuman",
   },
 ];

@@ -29,7 +29,7 @@ export default function Navbar({ darkMode, toggleDarkMode, cartItemCount }: Navb
     }`}>
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-2 group">
+          <Link to="/home" className="flex items-center space-x-2 group">
             <span className="text-3xl">🍽️</span>
             <span className="text-2xl font-bold text-kitchen-gold group-hover:text-kitchen-brown transition-colors">
               UNKLAB U Kitchen
@@ -38,9 +38,9 @@ export default function Navbar({ darkMode, toggleDarkMode, cartItemCount }: Navb
 
           <div className="flex items-center space-x-6">
             <Link
-              to="/"
+              to="/home"
               className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                isActive('/')
+                isActive('/home')
                   ? 'bg-kitchen-gold text-white dark:bg-kitchen-gold dark:text-kitchen-dark'
                   : 'text-gray-700 dark:text-kitchen-light hover:bg-kitchen-light dark:hover:bg-kitchen-brown/30'
               }`}
