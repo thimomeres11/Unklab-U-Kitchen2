@@ -4,9 +4,16 @@ import type { MenuItem } from "../data/menuData";
 interface MenuCardProps {
   item: MenuItem;
   onAddToCart: (item: MenuItem) => void;
+  isFavorite?: boolean;
+  onToggleFavorite?: (id: number) => void;
 }
 
-export default function MenuCard({ item, onAddToCart }: MenuCardProps) {
+export default function MenuCard({
+  item,
+  onAddToCart,
+  isFavorite = false,
+  onToggleFavorite,
+}: MenuCardProps) {
   const [imageError, setImageError] = useState(false);
 
   const formatPrice = (price: number) => {
@@ -17,13 +24,30 @@ export default function MenuCard({ item, onAddToCart }: MenuCardProps) {
     }).format(price);
   };
 
-  // Treat as image URL/path only if starts with "http" (external) or "/" (public path)
   const isImageUrl =
     typeof item.image === "string" &&
     (item.image.startsWith("http") || item.image.startsWith("/"));
 
   return (
-    <div className="bg-white dark:bg-kitchen-brown/30 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
+    <div className="bg-white dark:bg-kitchen-brown/30 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group relative">
+      {/* Heart button (favorite) */}
+      <button
+        onClick={() => onToggleFavorite && onToggleFavorite(item.id)}
+        aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
+        className={`absolute top-3 right-3 z-20 w-10 h-10 rounded-full flex items-center justify-center transition-all ${
+          isFavorite ? "bg-green-100" : "bg-white/80 dark:bg-kitchen-dark/60"
+        } shadow`}
+      >
+        <span
+          className={`text-xl transition-colors ${
+            isFavorite ? "text-green-600" : "text-gray-400"
+          }`}
+        >
+          {/* menggunakan emoji heart — bisa diganti icon library */}
+          {isFavorite ? "💚" : "🤍"}
+        </span>
+      </button>
+
       <div className="aspect-square bg-kitchen-light dark:bg-kitchen-dark flex items-center justify-center overflow-hidden group-hover:scale-110 transition-transform duration-300 relative">
         {isImageUrl && !imageError ? (
           <img
@@ -35,7 +59,6 @@ export default function MenuCard({ item, onAddToCart }: MenuCardProps) {
           />
         ) : (
           <div className="flex flex-col items-center justify-center text-center p-4">
-            {/* Jika bukan URL (mis. emoji di data) tampilkan emoji, jika URL tapi gagal load tampilkan placeholder */}
             <span className="text-6xl mb-2">
               {isImageUrl && imageError ? "🍽️" : item.image}
             </span>

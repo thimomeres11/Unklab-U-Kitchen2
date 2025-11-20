@@ -5,9 +5,7 @@ export default function Home() {
   const nama = localStorage.getItem("nama") || "";
 
   const handleLogout = () => {
-    // Hapus data dari localStorage
     localStorage.removeItem("nama");
-    // Route ke halaman Login
     navigate("/");
   };
 
@@ -16,12 +14,12 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-4 bg-gradient-to-br from-kitchen-gold via-kitchen-brown to-kitchen-dark text-white">
         <div className="container mx-auto text-center">
-          {/* User Info & Logout Button */}
+          {/* User Info & Logout */}
           {nama && (
             <div className="flex justify-end mb-6">
               <div className="flex items-center gap-4">
                 <span className="text-lg">
-                  Halo, <span className="font-bold">{nama}</span>
+                  Halo, <span className="font-bold text-2xl">{nama}</span>
                 </span>
                 <button
                   onClick={handleLogout}
@@ -33,16 +31,33 @@ export default function Home() {
             </div>
           )}
 
-          <div className="mb-8">
-            <span className="text-8xl mb-4 block">🍽️</span>
-            <h1 className="text-5xl md:text-6xl font-bold mb-4">
-              The UNKLAB U Kitchen
-            </h1>
+          {/* LOGO + TITLE */}
+          <div className="mb-8 flex flex-col items-center">
+            {/* LOGO — sedikit di atas title */}
+            <div className="relative">
+              <div className="w-36 h-36 rounded-full bg-white flex items-center justify-center overflow-hidden shadow-2xl transform -translate-y-6 mx-auto">
+                <img
+                  src="/images/menu/LogoUkitchen.png"
+                  alt="U-Kitchen Logo"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </div>
+
+            {/* TITLE */}
+            <div className="flex items-center gap-4 justify-center mt-0">
+              <h1 className="text-5xl md:text-6xl font-bold mb-4 flex items-center gap-4">
+                <span>The UNKLAB U Kitchen</span>
+              </h1>
+            </div>
+
+            {/* SUBTITLE */}
             <p className="text-xl md:text-2xl text-kitchen-light max-w-2xl mx-auto">
               Nikmati berbagai menu makanan dan minuman lezat dari kantin UNKLAB
             </p>
           </div>
 
+          {/* CTA BUTTONS */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
             <Link
               to="/menu"
@@ -92,10 +107,10 @@ export default function Home() {
             <div className="text-center p-6 bg-kitchen-light dark:bg-kitchen-brown/30 rounded-xl">
               <div className="text-5xl mb-4">🚚</div>
               <h3 className="text-xl font-bold mb-2 text-gray-800 dark:text-kitchen-light">
-                Antar ke Meja
+                Antar ke Tempat
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Pesanan Anda akan diantarkan langsung ke meja Anda
+                Pesanan Anda akan diantarkan langsung ke Tempat Anda
               </p>
             </div>
           </div>

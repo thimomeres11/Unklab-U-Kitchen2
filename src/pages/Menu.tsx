@@ -13,16 +13,28 @@ export default function Menu() {
     "name"
   );
   const [filteredMenu, setFilteredMenu] = useState<MenuItem[]>(menuData);
+  const [favorites, setFavorites] = useState<number[]>([]); // store ids
+
+  // load favorites from localStorage on mount
+  useEffect(() => {
+    const raw = localStorage.getItem("favorites");
+    if (raw) {
+      try {
+        const arr = JSON.parse(raw) as number[];
+        setFavorites(arr);
+      } catch {
+        setFavorites([]);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     let filtered = menuData;
 
-    // Apply filter
     if (filter !== "all") {
       filtered = filtered.filter((item) => item.category === filter);
     }
 
-    // Apply sort
     const sorted = [...filtered].sort((a, b) => {
       switch (sortBy) {
         case "name":
@@ -38,6 +50,18 @@ export default function Menu() {
 
     setFilteredMenu(sorted);
   }, [filter, sortBy]);
+
+  // toggle favorite and persist to localStorage
+  const toggleFavorite = (id: number) => {
+    setFavorites((prev) => {
+      const exists = prev.includes(id);
+      const next = exists ? prev.filter((x) => x !== id) : [...prev, id];
+      localStorage.setItem("favorites", JSON.stringify(next));
+      return next;
+    });
+    // also update a simple event so Navbar can react (optional)
+    window.dispatchEvent(new Event("favorites-changed"));
+  };
 
   const handleAddToCart = (item: MenuItem) => {
     addToCart({
@@ -122,7 +146,13 @@ export default function Menu() {
         {/* Menu Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredMenu.map((item) => (
-            <MenuCard key={item.id} item={item} onAddToCart={handleAddToCart} />
+            <MenuCard
+              key={item.id}
+              item={item}
+              onAddToCart={handleAddToCart}
+              isFavorite={favorites.includes(item.id)}
+              onToggleFavorite={toggleFavorite}
+            />
           ))}
         </div>
 

@@ -71,6 +71,7 @@ const cardStyle: React.CSSProperties = {
   flexDirection: "column",
   alignItems: "center",
   position: "relative",
+  rowGap: "5px",
 };
 
 const inputStyle: React.CSSProperties = {
@@ -122,7 +123,6 @@ const Login: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simpan nama ke localStorage untuk diambil di Home page
     localStorage.setItem("nama", nama);
     navigate("/home");
   };

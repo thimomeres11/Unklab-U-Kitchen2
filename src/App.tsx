@@ -13,6 +13,7 @@ import Menu from "./pages/Menu";
 import Order from "./pages/Order";
 import Delivery from "./pages/Delivery";
 import Login from "./pages/Login";
+import Favorites from "./pages/Favorites"; // <-- baru
 import { useCart } from "./contexts/CartContext";
 
 function Layout() {
@@ -37,6 +38,7 @@ function Layout() {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/menu" element={<Menu />} />
+          <Route path="/favorites" element={<Favorites />} /> {/* <-- new */}
           <Route path="/order" element={<Order />} />
           <Route path="/delivery" element={<Delivery />} />
         </Routes>
