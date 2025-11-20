@@ -1,7 +1,12 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-type DeliveryStatus = 'preparing' | 'cooking' | 'ready' | 'delivering' | 'delivered';
+type DeliveryStatus =
+  | "preparing"
+  | "cooking"
+  | "ready"
+  | "delivering"
+  | "delivered";
 
 interface StatusStep {
   id: DeliveryStatus;
@@ -12,44 +17,62 @@ interface StatusStep {
 
 const statusSteps: StatusStep[] = [
   {
-    id: 'preparing',
-    label: 'Pesanan Diterima',
-    icon: '📝',
-    description: 'Pesanan Anda telah diterima dan sedang diproses',
+    id: "preparing",
+    label: "Pesanan Diterima",
+    icon: "📝",
+    description: "Pesanan Anda telah diterima dan sedang diproses",
   },
   {
-    id: 'cooking',
-    label: 'Sedang Dimasak',
-    icon: '👨‍🍳',
-    description: 'Chef sedang menyiapkan makanan Anda',
+    id: "cooking",
+    label: "Sedang Dimasak",
+    icon: "👨‍🍳",
+    description: "Chef sedang menyiapkan makanan Anda",
   },
   {
-    id: 'ready',
-    label: 'Siap Diantar',
-    icon: '✅',
-    description: 'Makanan Anda sudah siap dan menunggu pengantaran',
+    id: "ready",
+    label: "Siap Diantar",
+    icon: "✅",
+    description: "Makanan Anda sudah siap dan menunggu pengantaran",
   },
   {
-    id: 'delivering',
-    label: 'Sedang Dikirim',
-    icon: '🚚',
-    description: 'Pesanan Anda sedang dalam perjalanan ke meja Anda',
+    id: "delivering",
+    label: "Sedang Dikirim",
+    icon: "🚚",
+    description: "Pesanan Anda sedang dalam perjalanan ke meja Anda",
   },
   {
-    id: 'delivered',
-    label: 'Telah Sampai',
-    icon: '🎉',
-    description: 'Pesanan Anda telah sampai. Selamat menikmati!',
+    id: "delivered",
+    label: "Telah Sampai",
+    icon: "🎉",
+    description: "Pesanan Anda telah sampai. Selamat menikmati!",
   },
 ];
 
 export default function Delivery() {
   const navigate = useNavigate();
-  const [currentStatus, setCurrentStatus] = useState<DeliveryStatus>('preparing');
+  const [currentStatus, setCurrentStatus] =
+    useState<DeliveryStatus>("preparing");
   const [progress, setProgress] = useState(0);
 
+  // tambahan: ambil nama & alamat dari localStorage
+  const [orderName, setOrderName] = useState<string>("");
+  const [alamatAsrama, setAlamatAsrama] = useState<string>("");
+
   useEffect(() => {
-    const statusOrder: DeliveryStatus[] = ['preparing', 'cooking', 'ready', 'delivering', 'delivered'];
+    const savedNama = localStorage.getItem("nama") || "";
+    const savedAlamat = localStorage.getItem("alamat_asrama") || "";
+    setOrderName(savedNama);
+    setAlamatAsrama(savedAlamat);
+  }, []);
+
+  useEffect(() => {
+    const statusOrder: DeliveryStatus[] = [
+      "preparing",
+      "cooking",
+      "ready",
+      "delivering",
+      "delivered",
+    ];
     let currentIndex = 0;
 
     const interval = setInterval(() => {
@@ -68,14 +91,25 @@ export default function Delivery() {
     return () => clearInterval(interval);
   }, []);
 
-  const currentStatusIndex = statusSteps.findIndex(step => step.id === currentStatus);
+  const currentStatusIndex = statusSteps.findIndex(
+    (step) => step.id === currentStatus
+  );
 
   return (
     <div className="min-h-screen pt-24 pb-16 px-4">
       <div className="container mx-auto max-w-4xl">
-        <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-800 dark:text-kitchen-light">
+        <h1 className="text-4xl md:text-5xl font-bold text-center mb-2 text-gray-800 dark:text-kitchen-light">
           Status Pengantaran
         </h1>
+
+        {/* Nama & Alamat yg diambil dari Order */}
+        {(orderName || alamatAsrama) && (
+          <p className="text-center text-lg text-gray-700 dark:text-kitchen-light mb-8">
+            {orderName && <span className="font-semibold">{orderName}</span>}
+            {orderName && alamatAsrama && <span className="mx-2">•</span>}
+            {alamatAsrama && <span>{alamatAsrama}</span>}
+          </p>
+        )}
 
         {/* Progress Bar */}
         <div className="mb-12">
@@ -85,14 +119,14 @@ export default function Delivery() {
                 <div
                   key={step.id}
                   className={`flex flex-col items-center flex-1 ${
-                    index < statusSteps.length - 1 ? 'mr-2' : ''
+                    index < statusSteps.length - 1 ? "mr-2" : ""
                   }`}
                 >
                   <div
                     className={`w-16 h-16 rounded-full flex items-center justify-center text-2xl transition-all duration-500 ${
                       index <= currentStatusIndex
-                        ? 'bg-kitchen-gold text-white scale-110'
-                        : 'bg-gray-300 dark:bg-gray-600 text-gray-500'
+                        ? "bg-kitchen-gold text-white scale-110"
+                        : "bg-gray-300 dark:bg-gray-600 text-gray-500"
                     }`}
                   >
                     {step.icon}
@@ -100,8 +134,8 @@ export default function Delivery() {
                   <p
                     className={`text-sm font-medium mt-2 text-center ${
                       index <= currentStatusIndex
-                        ? 'text-kitchen-gold dark:text-kitchen-gold'
-                        : 'text-gray-500 dark:text-gray-400'
+                        ? "text-kitchen-gold dark:text-kitchen-gold"
+                        : "text-gray-500 dark:text-gray-400"
                     }`}
                   >
                     {step.label}
@@ -140,8 +174,8 @@ export default function Delivery() {
               key={step.id}
               className={`flex items-center p-4 rounded-lg transition-all duration-300 ${
                 index <= currentStatusIndex
-                  ? 'bg-kitchen-gold/20 dark:bg-kitchen-gold/30 border-2 border-kitchen-gold'
-                  : 'bg-gray-100 dark:bg-gray-800 border-2 border-transparent'
+                  ? "bg-kitchen-gold/20 dark:bg-kitchen-gold/30 border-2 border-kitchen-gold"
+                  : "bg-gray-100 dark:bg-gray-800 border-2 border-transparent"
               }`}
             >
               <div className="text-4xl mr-4">{step.icon}</div>
@@ -166,13 +200,13 @@ export default function Delivery() {
         {/* Action Buttons */}
         <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
           <button
-            onClick={() => navigate('/menu')}
+            onClick={() => navigate("/menu")}
             className="px-6 py-3 bg-kitchen-gold hover:bg-kitchen-brown text-white rounded-lg font-medium transition-colors"
           >
             Pesan Lagi
           </button>
           <button
-            onClick={() => navigate('/')}
+            onClick={() => navigate("/")}
             className="px-6 py-3 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500 text-gray-800 dark:text-kitchen-light rounded-lg font-medium transition-colors"
           >
             Kembali ke Home
@@ -182,4 +216,3 @@ export default function Delivery() {
     </div>
   );
 }
-
