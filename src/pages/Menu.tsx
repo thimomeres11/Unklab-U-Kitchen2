@@ -135,7 +135,7 @@ export default function Menu() {
             onChange={(e) =>
               setSortBy(e.target.value as "name" | "price-asc" | "price-desc")
             }
-            className="px-4 py-2 rounded-lg bg-kitchen-light dark:bg-kitchen-brown/30 text-gray-700 dark:text-kitchen-light border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-kitchen-gold"
+            className="px-4 py-2 rounded-lg bg-black/80 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-kitchen-gold"
           >
             <option value="name">Sort by Name</option>
             <option value="price-asc">Price: Low to High</option>
