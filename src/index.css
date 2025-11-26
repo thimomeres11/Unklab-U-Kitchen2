@@ -12,3 +12,29 @@
     @apply bg-kitchen-light dark:bg-kitchen-dark text-gray-900 dark:text-kitchen-light transition-colors duration-300;
   }
 }
+
+.login-input::placeholder {
+  color: #9a8660;
+  opacity: 1;
+}
+
+.login-input:focus {
+  outline: none;
+  border-color: var(--color-kitchen-gold);
+  background: #fffaf0;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25);
+}
+
+.login-button {
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.login-button:hover {
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 10px 30px rgba(240, 124, 0, 0.45);
+}
+
+.login-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 14px rgba(240, 124, 0, 0.3);
+}
